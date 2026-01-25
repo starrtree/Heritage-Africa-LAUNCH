@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heritage Africa - Coming Soon</title>
+    
+    <!-- Google Fonts for that Luxury Look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for the Instagram Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- RESET & BASIC SETUP --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Lato', sans-serif;
+            color: #E0D0B0; /* Beige/Gold text color */
+            overflow: hidden; /* Prevents scrollbars if not needed */
+            position: relative;
+            background-color: #0f0f0f; /* Fallback dark color */
+        }
+
+        /* --- BACKGROUND IMAGE SETUP --- */
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            
+            /* UPDATED BACKDROP LINK */
+            background-image: url('https://i.imgur.com/juncXab.jpeg'); 
+            
+            background-size: cover;
+            background-position: center;
+            opacity: 0.4; /* Lowers brightness of background so text pops */
+        }
+
+        /* --- MAIN CONTAINER --- */
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        /* --- HEADER TEXT --- */
+        h1.main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #dcb368; /* Gold color */
+            margin-bottom: 5px;
+            border-bottom: 1px solid rgba(220, 179, 104, 0.3);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: #a89f81;
+            margin-top: 5px;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        /* --- LOGO IMAGE --- */
+        .logo-img {
+            width: 120px; /* Adjust size as needed */
+            height: auto;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+        }
+
+        /* --- CALL TO ACTION TEXT --- */
+        h2.cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: #f1ebd6;
+        }
+
+        p.cta-subtext {
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            color: #ccc;
+        }
+
+        /* --- EMAIL FORM --- */
+        .subscribe-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap; /* Allows stacking on very small mobile screens */
+        }
+
+        input[type="email"] {
+            padding: 12px 15px;
+            width: 250px;
+            border: 1px solid #555;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border-radius: 4px;
+            outline: none;
+            font-family: 'Lato', sans-serif;
+        }
+
+        button {
+            padding: 12px 25px;
+            background-color: #dcb368; /* The gold button color */
+            color: #1a1a1a;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Cinzel', serif;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #c49b50;
+        }
+
+        /* --- FOOTER & SOCIAL --- */
+        .footer-text {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .social-icons a {
+            color: #E0D0B0;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #fff;
+        }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 480px) {
+            h1.main-title { font-size: 2rem; }
+            h2.cta-title { font-size: 1.5rem; }
+            .subscribe-form { flex-direction: column; align-items: center; }
+            input[type="email"] { width: 100%; }
+            button { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Image Div -->
+    <div class="background-overlay"></div>
+
+    <div class="container">
+        <!-- Header Section -->
+        <h1 class="main-title">HERITAGE</h1>
+        <span class="subtitle">Africa</span>
+
+        <!-- Logo Image -->
+        <img src="https://i.imgur.com/GaOp2Rz.png" alt="Heritage Africa Mask Logo" class="logo-img">
+
+        <!-- Call to Action -->
+        <h2 class="cta-title">Be the first to know</h2>
+        <p class="cta-subtext">Subscribe for exclusive updates</p>
+
+        <!-- Subscription Form -->
+        <!-- Note: This form currently goes nowhere. You will add the backend action later. -->
+        <form class="subscribe-form" action="#" method="POST">
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <button type="submit">Notify Me</button>
+        </form>
+
+        <!-- Privacy Footer -->
+        <p class="footer-text">"We respect your privacy"</p>
+
+        <!-- Social Media Icon (Instagram Only) -->
+        <div class="social-icons">
+            <a href="https://www.instagram.com/heritageafricabrand?igsh=MTJvbmswNTNpZW8xcw==" target="_blank" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
+
