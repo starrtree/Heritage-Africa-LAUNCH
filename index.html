@@ -4,208 +4,300 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heritage Africa - Coming Soon</title>
-    
-    <!-- Google Fonts for that Luxury Look -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome for the Instagram Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- RESET & BASIC SETUP --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --gold: #dcb368;
+            --gold-soft: #f0d7a1;
+            --ink: #101010;
+            --cream: #f1ebd6;
+        }
+
         body {
-            height: 100vh;
+            min-height: 100vh;
             width: 100%;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             font-family: 'Lato', sans-serif;
-            color: #E0D0B0; /* Beige/Gold text color */
-            overflow: hidden; /* Prevents scrollbars if not needed */
+            color: #e0d0b0;
+            overflow: hidden;
             position: relative;
-            background-color: #0f0f0f; /* Fallback dark color */
+            background-color: #0f0f0f;
         }
 
-        /* --- BACKGROUND IMAGE SETUP --- */
         .background-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            
-            /* UPDATED BACKDROP LINK */
-            background-image: url('https://i.imgur.com/juncXab.jpeg'); 
-            
+            inset: 0;
+            z-index: -2;
+            background-image: url('https://i.imgur.com/juncXab.jpeg');
             background-size: cover;
             background-position: center;
-            opacity: 0.4; /* Lowers brightness of background so text pops */
+            opacity: 0.42;
+            transform: scale(1.08);
+            animation: settleBackground 2.5s ease forwards;
         }
 
-        /* --- MAIN CONTAINER --- */
+        .background-overlay::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 35%, rgba(19, 16, 12, 0.15), rgba(10, 10, 10, 0.88));
+        }
+
+        .intro {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            background: linear-gradient(160deg, rgba(9, 9, 9, 0.95), rgba(18, 15, 11, 0.98));
+            z-index: 3;
+            animation: hideIntro 1.1s ease 3.4s forwards;
+            pointer-events: none;
+        }
+
+        .intro-logo {
+            width: clamp(100px, 15vw, 180px);
+            filter: drop-shadow(0 0 22px rgba(220, 179, 104, 0.45));
+            opacity: 0;
+            transform: scale(0.45) rotate(-4deg);
+            animation: logoEntrance 1.2s cubic-bezier(.22, .61, .36, 1) 0.25s forwards;
+        }
+
+        .intro-title {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.55rem;
+            font-size: clamp(2rem, 8vw, 5.2rem);
+            color: var(--gold);
+            text-shadow: 0 0 24px rgba(220, 179, 104, 0.25);
+            opacity: 0;
+            transform: translateY(26px);
+            animation: titleReveal 1s ease-out 1.2s forwards;
+            position: relative;
+        }
+
+        .intro-title::after {
+            content: '';
+            position: absolute;
+            left: 8%;
+            right: 8%;
+            bottom: -12px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(220, 179, 104, 0.8), transparent);
+            transform: scaleX(0);
+            transform-origin: center;
+            animation: lineReveal 0.9s ease 1.7s forwards;
+        }
+
         .container {
             text-align: center;
-            padding: 20px;
-            max-width: 600px;
-            width: 100%;
+            padding: 2rem 1.2rem;
+            max-width: 680px;
+            width: min(92vw, 680px);
+            border: 1px solid rgba(220, 179, 104, 0.23);
+            border-radius: 16px;
+            background: rgba(10, 10, 10, 0.56);
+            box-shadow: 0 20px 65px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(6px);
+            opacity: 0;
+            transform: translateY(20px) scale(0.98);
+            animation: pageReveal 1s ease 3.35s forwards;
         }
 
-        /* --- HEADER TEXT --- */
         h1.main-title {
             font-family: 'Cinzel', serif;
-            font-size: 3rem;
-            letter-spacing: 4px;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            letter-spacing: 0.3rem;
             text-transform: uppercase;
-            color: #dcb368; /* Gold color */
-            margin-bottom: 5px;
+            color: var(--gold);
+            margin-bottom: 0.2rem;
             border-bottom: 1px solid rgba(220, 179, 104, 0.3);
             display: inline-block;
-            padding-bottom: 5px;
+            padding-bottom: 0.5rem;
         }
 
         .subtitle {
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            color: #a89f81;
-            margin-top: 5px;
-            margin-bottom: 30px;
             display: block;
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: #b3a786;
+            margin: 0.35rem 0 1.6rem;
+            letter-spacing: 0.14rem;
         }
 
-        /* --- LOGO IMAGE --- */
         .logo-img {
-            width: 120px; /* Adjust size as needed */
+            width: clamp(88px, 12vw, 130px);
             height: auto;
-            margin-bottom: 25px;
-            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+            margin-bottom: 1.25rem;
+            filter: drop-shadow(0 0 14px rgba(0, 0, 0, 0.55));
         }
 
-        /* --- CALL TO ACTION TEXT --- */
         h2.cta-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2.1rem);
             font-weight: 400;
-            margin-bottom: 10px;
-            color: #f1ebd6;
+            margin-bottom: 0.5rem;
+            color: var(--cream);
         }
 
         p.cta-subtext {
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            margin-bottom: 25px;
-            color: #ccc;
+            font-size: 0.93rem;
+            letter-spacing: 0.08rem;
+            margin-bottom: 1.35rem;
+            color: #d6d6d6;
         }
 
-        /* --- EMAIL FORM --- */
         .subscribe-form {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap; /* Allows stacking on very small mobile screens */
+            gap: 0.65rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
         }
 
         input[type="email"] {
-            padding: 12px 15px;
-            width: 250px;
-            border: 1px solid #555;
-            background-color: rgba(255, 255, 255, 0.9);
-            color: #333;
-            border-radius: 4px;
+            padding: 0.85rem 1rem;
+            width: min(330px, 100%);
+            border: 1px solid #5e5e5e;
+            background-color: rgba(255, 255, 255, 0.93);
+            color: #303030;
+            border-radius: 6px;
             outline: none;
             font-family: 'Lato', sans-serif;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        input[type="email"]:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(220, 179, 104, 0.22);
         }
 
         button {
-            padding: 12px 25px;
-            background-color: #dcb368; /* The gold button color */
-            color: #1a1a1a;
+            padding: 0.86rem 1.7rem;
+            background: linear-gradient(135deg, #c89a4a, #e0bc78);
+            color: #171717;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 700;
             font-family: 'Cinzel', serif;
-            transition: background 0.3s ease;
+            letter-spacing: 0.04rem;
+            transition: transform 0.25s ease, filter 0.25s ease;
         }
 
         button:hover {
-            background-color: #c49b50;
+            transform: translateY(-1px);
+            filter: brightness(1.05);
         }
 
-        /* --- FOOTER & SOCIAL --- */
         .footer-text {
-            font-size: 0.75rem;
-            opacity: 0.7;
-            margin-bottom: 15px;
+            font-size: 0.78rem;
+            opacity: 0.76;
+            margin-bottom: 0.9rem;
             font-style: italic;
         }
 
         .social-icons a {
-            color: #E0D0B0;
-            font-size: 1.5rem;
+            color: #e0d0b0;
+            font-size: 1.45rem;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
         .social-icons a:hover {
             color: #fff;
         }
 
-        /* --- MOBILE RESPONSIVENESS --- */
-        @media (max-width: 480px) {
-            h1.main-title { font-size: 2rem; }
-            h2.cta-title { font-size: 1.5rem; }
-            .subscribe-form { flex-direction: column; align-items: center; }
-            input[type="email"] { width: 100%; }
-            button { width: 100%; }
+        @keyframes logoEntrance {
+            0% { opacity: 0; transform: scale(0.45) rotate(-4deg); }
+            60% { opacity: 1; transform: scale(1.08) rotate(1deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0); }
+        }
+
+        @keyframes titleReveal {
+            from { opacity: 0; transform: translateY(26px); letter-spacing: 0.9rem; }
+            to { opacity: 1; transform: translateY(0); letter-spacing: 0.55rem; }
+        }
+
+        @keyframes lineReveal {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        @keyframes hideIntro {
+            0% { opacity: 1; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+
+        @keyframes pageReveal {
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes settleBackground {
+            from { transform: scale(1.08); }
+            to { transform: scale(1); }
+        }
+
+        @media (max-width: 560px) {
+            .container {
+                padding: 1.55rem 1rem;
+            }
+
+            .subscribe-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            button {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-
-    <!-- Background Image Div -->
     <div class="background-overlay"></div>
 
-    <div class="container">
-        <!-- Header Section -->
+    <div class="intro" aria-hidden="true">
+        <img src="https://i.imgur.com/GaOp2Rz.png" alt="Heritage logo" class="intro-logo">
+        <h2 class="intro-title">HERITAGE</h2>
+    </div>
+
+    <main class="container">
         <h1 class="main-title">HERITAGE</h1>
         <span class="subtitle">Africa</span>
 
-        <!-- Logo Image -->
         <img src="https://i.imgur.com/GaOp2Rz.png" alt="Heritage Africa Mask Logo" class="logo-img">
 
-        <!-- Call to Action -->
         <h2 class="cta-title">Be the first to know</h2>
-        <p class="cta-subtext">Subscribe for exclusive updates</p>
+        <p class="cta-subtext">Join our email list for launch updates and exclusives.</p>
 
-        <!-- Subscription Form -->
-        <!-- Note: This form currently goes nowhere. You will add the backend action later. -->
         <form class="subscribe-form" action="#" method="POST">
             <input type="email" name="email" placeholder="Enter your email" required>
-            <button type="submit">Notify Me</button>
+            <button type="submit">Join the List</button>
         </form>
 
-        <!-- Privacy Footer -->
         <p class="footer-text">"We respect your privacy"</p>
 
-        <!-- Social Media Icon (Instagram Only) -->
         <div class="social-icons">
             <a href="https://www.instagram.com/heritageafricabrand?igsh=MTJvbmswNTNpZW8xcw==" target="_blank" aria-label="Instagram">
                 <i class="fab fa-instagram"></i>
             </a>
         </div>
-    </div>
-
+    </main>
 </body>
 </html>
-
